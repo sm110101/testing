@@ -1,0 +1,24 @@
+name: gu-domains-push
+description: "Copies the `docs` subdirectory to a path on your Georgetown Domains server specified by the `GU_DOMAINS_PATH` secret."
+branding:
+  icon: 'server'
+  color: 'gray-dark'
+on: [push]
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: copy file via ssh key
+      uses: appleboy/scp-action@v0.1.4
+      with:
+        host: ${{ secrets.HOST }}
+        username: ${{ secrets.USERNAME }}
+        password: ${{ secrets.PASSWORD }}
+        port: 22
+        source: "docs/*"
+        target: ${{ secrets.GU_DOMAINS_PATH }}
+        strip_components: 1
+        overwrite: true
+        rm: true

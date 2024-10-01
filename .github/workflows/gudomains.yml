@@ -1,8 +1,4 @@
 name: gu-domains-push
-description: "Copies the `docs` subdirectory to a path on your Georgetown Domains server specified by the `GU_DOMAINS_PATH` secret."
-branding:
-  icon: 'server'
-  color: 'gray-dark'
 on: [push]
 jobs:
   build:
